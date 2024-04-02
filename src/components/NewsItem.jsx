@@ -7,7 +7,7 @@ export const NewsItem = ({title,description,src,url}) => {
         <img src={src?src:image} className="card-img-top" style={{height:"200px",width:"330px"}} alt="..."/>
         <div className="card-body">
             <h5 className="card-title">{title}</h5>
-            <p className="card-text">{description}</p>
+            {/* <p className="card-text">{description}</p> */}
             <a href={url} className="btn btn-primary">Read more</a>
         </div>
         </div>

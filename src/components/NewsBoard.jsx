@@ -4,32 +4,34 @@ import { useState } from 'react'
 import { NewsItem } from './NewsItem';
 
 export const NewsBoard = ({category}) => {
-    const[articles,setarticles]=useState([]);
-    const[isLoading,setIsLoading]=useState(true);
+  const[articles,setarticles]=useState([]);
+  const[isLoading,setIsLoading]=useState(true);
     const API_KEY="217d0916763641f2b74ee9ec9e3d5ce6"
 
     useEffect(()=>{
-        const fetchData = async() => {
-            try{
-                setIsLoading(true);
-                let url=`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
-                const response = await fetch(url);
-                const data = await response.json();
-                setarticles(data.articles)
-                setIsLoading(false);
-            }
-            catch(error)
-            {
-                console.error('Error fetching data:', error);
-                setIsLoading(false);
-            }
-        };
-        fetchData()
+      const fetchData = async() => {
+        try{
+          setIsLoading(true);
+          let url=`https://newsapi.org/v2/top-headlines?country=in&category=${category}&apiKey=${API_KEY}`
+          const response = await fetch(url);
+          const data = await response.json();
+          setarticles(data.articles)
+          setIsLoading(false);
+        }
+        catch(error)
+        {
+          console.error('Error fetching data:', error);
+          setIsLoading(false);
+        }
+      };
+      fetchData()
     },[category])
 
    
-  return (
-    <div className='text-center'>
+    return (
+      <>
+      {/* <Navbar/> */}
+      <div className='text-center'>
         <h2 className='text-center text-light'>Latest <span className='badge bg-danger'>{category} News</span></h2>
         {isLoading ? (
             <div class="d-flex justify-content-center my-5 text-light" >
@@ -49,5 +51,6 @@ export const NewsBoard = ({category}) => {
         }
        
     </div>
+    </>
   )
 }
